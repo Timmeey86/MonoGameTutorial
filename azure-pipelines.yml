@@ -3,17 +3,48 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+# Trigger the Azure DevOps build upon changes in the master or setup branches
 trigger:
 - master
+- setup
 
+# Build on MacOS 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'macOS-10.13'
+
+# Configure paths here
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
+# Note for the following tasks: The number behind the @ symbol indicates the version of that task
+# We always use the current task version which can be found out by checking 
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/index?view=azure-devops
+# and then clicking on the relevant task and viewing the example.
+# If you know a faster way, please update this comment.
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# Install NuGet
+- task: NuGetToolInstaller@0
 
+# Restore any missing dependencies
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*.sln'
+    
+# Install MonoGame and other dependencies
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    # Download Monogame 3.7.1 (-L is important so curl follows redirects)
+    curl -L -O https://github.com/MonoGame/MonoGame/releases/download/v3.7.1/MonoGame.pkg
+    # Install the MonoGame package
+    sudo installer -pkg "$(pwd)/MonoGame.pkg" -target /
+    echo $(outputDirectory)
+  displayName: 'Installing MonoGame'
+    
+# Build any .csproj containing "Droid" as a Xamarin project
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '**/*Droid*.csproj'
+    outputDirectory: '$(outputDirectory)'
+    configuration: '$(buildConfiguration)'
+    
