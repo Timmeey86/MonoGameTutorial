@@ -16,6 +16,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+  packageName: 'com.github.timmeey86.monogametutorial'
 
 # Note for the following tasks: The number behind the @ symbol indicates the version of that task
 # We always use the current task version which can be found out by checking 
@@ -38,7 +39,6 @@ steps:
     curl -L -O https://github.com/MonoGame/MonoGame/releases/download/v3.7.1/MonoGame.pkg
     # Install the MonoGame package
     sudo installer -pkg "$(pwd)/MonoGame.pkg" -target /
-    echo $(outputDirectory)
   displayName: 'Installing MonoGame'
     
 # Build any .csproj containing "Droid" as a Xamarin project
@@ -47,4 +47,10 @@ steps:
     projectFile: '**/*Droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+    
+# Publish an artifact to be used in a release pipeline   
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'InitialTestRelease' 
+    targetPath: '$(outputDirectory)/$(packageName).apk'
     
