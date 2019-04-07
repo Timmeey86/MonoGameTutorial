@@ -63,4 +63,4 @@ Go back to the `Git Bash`, or open a new one at the root of your repository, the
 This amount of code is already sufficient to set up continuous integration from day one.
 
 ## Setting up CI
-[Continue with the guide](3_setting_up_CI)
+[Continue with the guide](3_setting_up_CI.md)

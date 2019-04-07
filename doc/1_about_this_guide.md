@@ -31,4 +31,4 @@ This guide will not explain how to:
 - An installed Git Bash shell or TortoiseGit
 - 
 ## Getting Started
-[Setting up a cross-platform MonoGame solution](2_setting_up_a_solution)
+[Setting up a cross-platform MonoGame solution](2_setting_up_a_solution.md)

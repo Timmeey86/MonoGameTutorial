@@ -102,4 +102,4 @@ Check your azure pipeline account, it should start building the commit after aro
 
 Before actually uploading that artifact anywhere, though, we will talk about signing an Android APK (this is vital if you ever want it to be in the Play Store).
 
-[Continue with the guide](4_signing_an_apk)
+[Continue with the guide](4_signing_an_apk.md)

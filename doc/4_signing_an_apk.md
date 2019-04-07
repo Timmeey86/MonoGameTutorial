@@ -41,4 +41,4 @@ The `apksignerKeystoreFile` parameter is the name of your keystore file. We are 
 
 Congratulations, you signed your first APK with your own key. However, you can not download it or anything, so you need to publish it somewhere.
 
-[Continue with the guide](5_publishing_a_build)
+[Continue with the guide](5_publishing_a_build.md)
