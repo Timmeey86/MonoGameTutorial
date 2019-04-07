@@ -48,6 +48,17 @@ steps:
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
     
+# Sign the app using the decrypted keystore and the passwords stored in the Azure Pipeline
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksign: true
+    apksignerKeystoreFile: 'MonoGameTutorial.keystore'
+    apksignerKeystorePassword: '$(keystore.pass)'
+    apksignerKeystoreAlias: '$(keystore.alias)'
+    apksignerKeyPassword: '$(keystore.aliaspass)'
+    zipalign: true
+    
 # Publish an artifact to be used in a release pipeline   
 - task: PublishPipelineArtifact@0
   inputs:
