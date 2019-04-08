@@ -44,7 +44,6 @@ steps:
 # Build the desktop project as a regular MSBuild project
 - task: MSBuild@1
   inputs:
-    solution: '**/*.sln' 
     platform: AnyCPU
     configuration: release
     msbuildArguments: MonoGameTutorial.Desktop/MonoGameTutorial.Desktop.csproj
