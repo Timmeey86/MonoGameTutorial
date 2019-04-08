@@ -17,6 +17,8 @@ variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
   packageName: 'com.github.timmeey86.monogametutorial'
+  exeSourceDirectory: 'MonoGameTutorial.Desktop/bin/DesktopGL/AnyCPU/release'
+  exeFileName: 'MonoGameTutorial.Desktop.exe'
 
 # Note for the following tasks: The number behind the @ symbol indicates the version of that task
 # We always use the current task version which can be found out by checking 
@@ -47,6 +49,19 @@ steps:
     solution: '**/*Desktop.csproj' 
     platform: AnyCPU
     configuration: release
+    
+# Copy the .exe to the output directory
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(exeSourceDirectory)'
+    targetFolder: '$(outputDirectory)'
+    contents: '$(exeFileName)'
+ 
+# Publish an artiface for the .exe 
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'ExeFile'
+    targetPath: '$(outputDirectory)/$(exeFileName)'
     
 # Build any .csproj containing "Droid" as a Xamarin project
 - task: XamarinAndroid@1
