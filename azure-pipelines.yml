@@ -18,7 +18,6 @@ variables:
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
   packageName: 'com.github.timmeey86.monogametutorial'
   exeSourceDirectory: 'MonoGameTutorial.Desktop/bin/DesktopGL/AnyCPU/release'
-  exeFileName: 'MonoGameTutorial.Desktop.exe'
 
 # Note for the following tasks: The number behind the @ symbol indicates the version of that task
 # We always use the current task version which can be found out by checking 
@@ -50,18 +49,28 @@ steps:
     platform: AnyCPU
     configuration: release
     
-# Copy the .exe to the output directory
-- task: CopyFiles@2
+ # Zip the exe files as .zip and .tar.gz
+- task: ArchiveFiles@2
   inputs:
-    sourceFolder: '$(exeSourceDirectory)'
-    targetFolder: '$(outputDirectory)'
-    contents: '$(exeFileName)'
- 
-# Publish an artiface for the .exe 
+    rootFolderOrFile: '$(exeSourceDirectory)' 
+    archiveType: 'zip'
+    archiveFile: '$(outputDirectory)/MonoGameTutorial.zip' 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(exeSourceDirectory)' 
+    archiveType: 'tar'
+    tarCompression: 'gz'
+    archiveFile: '$(outputDirectory)/MonoGameTutorial.tar.gz' 
+    
+# Publish artifacts for Windows/Linux versions
 - task: PublishPipelineArtifact@0
   inputs:
-    artifactName: 'ExeFile'
-    targetPath: '$(outputDirectory)/$(exeFileName)'
+    artifactName: 'WindowsArtifact'
+    targetPath: '$(outputDirectory)/*.zip'
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'LinuxArtifact'
+    targetPath: '$(outputDirectory)/*.tar.gz'
     
 # Build any .csproj containing "Droid" as a Xamarin project
 - task: XamarinAndroid@1
@@ -84,6 +93,6 @@ steps:
 # Publish an artifact to be used in a release pipeline   
 - task: PublishPipelineArtifact@0
   inputs:
-    artifactName: 'InitialTestRelease' 
+    artifactName: 'AndroidArtifact' 
     targetPath: '$(outputDirectory)/$(packageName).apk'
     
