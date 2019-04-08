@@ -44,9 +44,9 @@ steps:
 # Build the desktop project as a regular MSBuild project
 - task: MSBuild@1
   inputs:
+    solution: '**/*Desktop.csproj' 
     platform: AnyCPU
     configuration: release
-    msbuildArguments: MonoGameTutorial.Desktop/MonoGameTutorial.Desktop.csproj
     
 # Build any .csproj containing "Droid" as a Xamarin project
 - task: XamarinAndroid@1
