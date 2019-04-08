@@ -41,6 +41,14 @@ steps:
     sudo installer -pkg "$(pwd)/MonoGame.pkg" -target /
   displayName: 'Installing MonoGame'
     
+# Build the desktop project as a regular MSBuild project
+- task: MSBuild@1
+  inputs:
+    solution: '**/*.sln' 
+    platform: AnyCPU
+    configuration: release
+    msbuildArguments: MonoGameTutorial.Desktop/MonoGameTutorial.Desktop.csproj
+    
 # Build any .csproj containing "Droid" as a Xamarin project
 - task: XamarinAndroid@1
   inputs:
