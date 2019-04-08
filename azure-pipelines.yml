@@ -54,23 +54,23 @@ steps:
   inputs:
     rootFolderOrFile: '$(exeSourceDirectory)' 
     archiveType: 'zip'
-    archiveFile: 'MonoGameTutorial.zip' 
+    archiveFile: '$(outputDirectory)/MonoGameTutorial.zip' 
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(exeSourceDirectory)' 
     archiveType: 'tar'
     tarCompression: 'gz'
-    archiveFile: 'MonoGameTutorial.tar.gz' 
+    archiveFile: '$(outputDirectory)/MonoGameTutorial.tar.gz' 
     
 # Publish artifacts for Windows/Linux versions
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'WindowsArtifact'
-    targetPath: '$(Agent.BuildDirectory)/*.zip'
+    targetPath: '$(outputDirectory)/*.zip'
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'LinuxArtifact'
-    targetPath: '$(Agent.BuildDirectory)/*.tar.gz'
+    targetPath: '$(outputDirectory)/*.tar.gz'
     
 # Build any .csproj containing "Droid" as a Xamarin project
 - task: XamarinAndroid@1
