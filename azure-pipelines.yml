@@ -66,11 +66,11 @@ steps:
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'WindowsArtifact'
-    targetPath: '$(outputDirectory)/*.zip'
+    targetPath: '$(outputDirectory)/MonoGameTutorial.zip'
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'LinuxArtifact'
-    targetPath: '$(outputDirectory)/*.tar.gz'
+    targetPath: '$(outputDirectory)/MonoGameTutorial.tar.gz'
     
 # Build any .csproj containing "Droid" as a Xamarin project
 - task: XamarinAndroid@1
