@@ -31,3 +31,7 @@ In this section, we set up a manual release pipeline which publishes to the same
 	 - Click on `+ Release`and `Create Release` and `Create`.
 	 - Click on `Releases` in the left-hand panel.
 	 - Once you see a green check mark next to `Publish to GitHub`, you can go to GitHub and you should see your signed APK file in the release you just created.
+
+Once you're done verifying that you're satisfied with the APK (or uploaded it to an alpha release channel in Google Play Store), it's time to care about the desktop platforms.
+
+[Continue with the guide](6_adding_more_platforms.md)
