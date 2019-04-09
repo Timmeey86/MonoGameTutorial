@@ -11,6 +11,7 @@ Following this guide, you have (hopefully) successfully done the following thing
 
 Next steps you could take from this point:
 
+- Create a Pull Request from your branch on GitHub and merge it back to your `master` (you can also do this on the command line of course). When doing it on GitHub, I recommend picking the `Squash and Merge` option from the dropdown after creating and before acceppting the pull request.
 - If you haven't done already, set up an actual project for your app.
 - Set up a Unit Testing / other testing framework and integrate it into your Continuous Integration pipeline - The less effort it takes to write a test when you need it, the more likely you are going to write it. So why not set this up right now?
 - Add more platforms to your project and the release pipeline.
