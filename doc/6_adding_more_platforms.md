@@ -60,3 +60,6 @@ In order to get those files into the GitHub tag, go back to Azure pipelines and 
  5. Click the `GitHub Release (edit) panel` and scroll down to `Assets`.
  6. Extend the list by `WindowsArtifact/*` and `LinuxArtifact/*`, each in a new line.
  7. Click `Save`, then create a new release.
+
+The new files will automatically appear on your GitHub tag once they're uploaded (you might need to reload..).
+Time for a [summary and outlook](7_summary_and_outlook.md) before you can finally start developing your game/app and make full use of the CI/CD pipeline.
