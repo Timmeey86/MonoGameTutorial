@@ -23,6 +23,7 @@ This guide currently explains how the following things can be done for free for 
 This guide will not explain how to:
 - set up developer accounts for Google Play Store, Apple App Store or the Microsoft Store.
 - set up a Continuous Delivery pipeline which publishes into the various stores directly.
+- actually develop a game
 
 ## Prerequisites:
 - A Windows 10 machine
