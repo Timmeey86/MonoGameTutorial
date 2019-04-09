@@ -53,11 +53,13 @@ steps:
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(exeSourceDirectory)' 
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(outputDirectory)/MonoGameTutorial.zip' 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(exeSourceDirectory)' 
+    rootFolderOrFile: '$(exeSourceDirectory)'
+    includeRootFolder: false
     archiveType: 'tar'
     tarCompression: 'gz'
     archiveFile: '$(outputDirectory)/MonoGameTutorial.tar.gz' 
@@ -90,7 +92,7 @@ steps:
     apksignerKeyPassword: '$(keystore.aliaspass)'
     zipalign: true
     
-# Publish an artifact to be used in a release pipeline   
+# Publish an artifact to be used for Android
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'AndroidArtifact' 
