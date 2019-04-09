@@ -86,10 +86,10 @@ Now we're ready to actually build our .apk:
 
 and publish it so it can be reused by a release pipeline. The artifact name is like a label (and a folder name) for your artifact, so name it anything you want.
     
-    # Publish an artifact to be used in a release pipeline   
+    # Publish an artifact to be used for Android
     - task: PublishPipelineArtifact@0
       inputs:
-        artifactName: 'InitialTestRelease' 
+        artifactName: 'AndroidArtifact' 
         targetPath: '$(outputDirectory)/$(packageName).apk'
 
 You can now commit this through
